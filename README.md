@@ -104,7 +104,7 @@ See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Theo van der Sluijs - [@twitter_handle](https://twitter.com/twitter_handle) - theo@vandersluijs.nl
 
 Project Link: [https://github.com/tvdsluijs/money-burn-monitor](https://github.com/tvdsluijs/money-burn-monitor)
 
