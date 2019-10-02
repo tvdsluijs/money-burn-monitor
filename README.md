@@ -107,3 +107,19 @@ See `LICENSE` for more information.
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 
 Project Link: [https://github.com/tvdsluijs/money-burn-monitor](https://github.com/tvdsluijs/money-burn-monitor)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/tvdsluijs/money-burn-monitor.svg?style=flat-square
+[contributors-url]: https://github.com/tvdsluijs/money-burn-monitor/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/tvdsluijs/money-burn-monitor.svg?style=flat-square
+[forks-url]: https://github.com/tvdsluijs/money-burn-monitor/network/members
+[stars-shield]: https://img.shields.io/github/stars/tvdsluijs/money-burn-monitor.svg?style=flat-square
+[stars-url]: https://github.com/tvdsluijs/money-burn-monitor/stargazers
+[issues-shield]: https://img.shields.io/github/issues/tvdsluijs/money-burn-monitor.svg?style=flat-square
+[issues-url]: https://github.com/tvdsluijs/money-burn-monitor/issues
+[license-shield]: https://img.shields.io/github/license/tvdsluijs/money-burn-monitor.svg?style=flat-square
+[license-url]: https://github.com/tvdsluijs/money-burn-monitor/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/tvdsluijs
