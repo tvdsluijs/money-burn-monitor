@@ -104,7 +104,7 @@ See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Theo van der Sluijs - [@twitter_handle](https://twitter.com/twitter_handle) - theo@vandersluijs.nl
+Theo van der Sluijs - [@tvdsluijs](https://twitter.com/tvdsluijs) - theo@vandersluijs.nl
 
 Project Link: [https://github.com/tvdsluijs/money-burn-monitor](https://github.com/tvdsluijs/money-burn-monitor)
 
@@ -122,4 +122,4 @@ Project Link: [https://github.com/tvdsluijs/money-burn-monitor](https://github.c
 [license-shield]: https://img.shields.io/github/license/tvdsluijs/money-burn-monitor.svg?style=flat-square
 [license-url]: https://github.com/tvdsluijs/money-burn-monitor/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/tvdsluijs
+[linkedin-url]: https://linkedin.com/in/tvandersluijs
