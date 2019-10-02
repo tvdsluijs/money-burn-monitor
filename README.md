@@ -56,11 +56,11 @@ What does a meeting cost, see it in real time with this money-burn-monitor
 
 Fill in the rates and press start!
 
-[Money-Burn-Monitor][assets/money-burn-monitor.16.png]]
+![Money-Burn-Monitor](assets/money-burn-monitor.16.png)
 
 Even responsive mobile ready
 
-[Money-Burn-Monitor][assets/money-burn-monitor.02.png]]
+![Money-Burn-Monitor](assets/money-burn-monitor.02.png)
 
 
 <!-- GETTING STARTED -->
