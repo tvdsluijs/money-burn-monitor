@@ -7,16 +7,21 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/bootstrap.min.css" >
+    <style>
+        #svg_top {
+            fill: #FFF;
+        }
+        .fa-w-14{
+            width: 25px;
+            height: 25px;
+            fill: #FFF;
+            color: #FFF;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-            <h1>Money Burn Monitor</h1>
-            <p class="lead">Where every second counts!</p>
-        </div>
-    </div>
     <div class="row">
         <p><br/></p>
     </div>
@@ -27,28 +32,28 @@
                 <div class="card-body">
                     <h4 class="card-title">Fill in peoples rates</h4>
                     <p class="card-text">
-                        <div class="row after-add-more">
+                    <div class="row after-add-more">
+                        <div class="col-3"><label class="control-label">Rate €.</label></div>
+                        <div class="col-4">
+                            <input  name="my_rate[]" type="text" placeholder="Rate"
+                                    class="form-control input-md" value="120"></div>
+                        <div class="col-5">
+                            <button class="btn btn-success btn-lg btn-block add-more" type="button">
+                                <i class="glyphicon glyphicon-plus"></i> Add</button>
+                        </div>
+                    </div>
+                    <div class="copy hide">
+                        <div class="row control-group">
                             <div class="col-3"><label class="control-label">Rate €.</label></div>
                             <div class="col-4">
-                                <input  name="my_rate[]" type="text" placeholder="Rate"
+                                <input id="my_rate" name="my_rate[]" type="text" placeholder="Rate"
                                        class="form-control input-md" value="120"></div>
                             <div class="col-5">
-                                <button class="btn btn-success btn-lg btn-block add-more" type="button">
-                                    <i class="glyphicon glyphicon-plus"></i> Add</button>
+                                <button class="btn btn-info btn-lg btn-block remove" type="button">
+                                    <i class="glyphicon glyphicon-remove"></i> Delete</button>
                             </div>
                         </div>
-                        <div class="copy hide">
-                            <div class="row control-group">
-                                <div class="col-3"><label class="control-label">Rate €.</label></div>
-                                <div class="col-4">
-                                    <input id="my_rate" name="my_rate[]" type="text" placeholder="Rate"
-                                           class="form-control input-md" value="120"></div>
-                                <div class="col-5">
-                                    <button class="btn btn-info btn-lg btn-block remove" type="button">
-                                        <i class="glyphicon glyphicon-remove"></i> Delete</button>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
 
                     </p>
                 </div>
@@ -56,14 +61,48 @@
 
         </div>
         <div class="col-sm-12 col-md-3 col-lg-6 text-center">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <h1>Money Burn Monitor</h1>
+                    <p class="lead">Where every second counts!</p>
+                </div>
+            </div>
+
             <p>
-            <img src="assets/tenor.gif" height="150" width="150"/>
+                <img src="assets/tenor.gif" height="150" width="150"/>
             </p>
             <div class="alert alert-primary">
                 <div id="stopwatch" >00:00:00</div>
             </div>
 
             <div id="money" class="alert alert-dismissible alert-danger display-3"></div>
+
+            <div class="row">
+                <div class="col-sm">
+
+                </div>
+                <div class="col-sm text-center">
+                    <button id="start" class="btn btn-success">Start</button>
+                    <button id="stop" class="btn btn-danger">Stop</button>
+                </div>
+                <div class="col-sm">
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="page-footer font-small blue pt-4">
+
+                <div class="footer-copyright text-center py-3">
+                    <p>Like this script? Buy me a
+                        <a href="https://www.buymeacoffee.com/itheo" target="_blank">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="coffee-togo" class="svg-inline--fa fa-coffee-togo fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M48 160h352l-8 96H56zm330.67 256H69.33l-11-131.76 16.56 198.42A32 32 0 0 0 106.78 512h234.44a32 32 0 0 0 31.89-29.34l16.54-198.42z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M69.33 416h309.34L392 256H56zM432 64h-16l-23.16-46.31A32 32 0 0 0 364.22 0H83.78a32 32 0 0 0-28.62 17.69L32 64H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16z"></path></g></svg></a>.</p> <p> More info about this script, just visit <a href="https://github.com/tvdsluijs/money-burn-monitor" target="_blank">my github</a>.
+                </p></div>
+
+            </footer>
+            <!-- Footer -->
+
+
         </div>
         <div class="col-sm-12 col-md-3 col-lg-3">
 
@@ -100,30 +139,8 @@
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm">
 
-        </div>
-        <div class="col-sm text-center">
-            <button id="start" class="btn btn-success">Start</button>
-            <button id="stop" class="btn btn-danger">Stop</button>
-        </div>
-        <div class="col-sm">
-
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">Like this script? Buy me a
-            <a href="https://www.buymeacoffee.com/itheo">Coffee!</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
 </div>
-
 
 </body>
 <script
@@ -142,19 +159,6 @@
         var hour_rate = 120;
         $('#money').html("€ 0,00")
 
-        // This part is for adding deleting Fields
-        // $(".delete").hide();
-        // //when the Add Field button is clicked
-
-        // $("#add").click(function(e) {
-        //     $(".delete").fadeIn("1500");
-        //     //Append a new row of code to the "#items" div
-        //     $("#items").append(
-        //         '<div class="next-referral"><input id="my_rate" name="my_rate[]" type="text" ' +
-        //         'placeholder="Rate" class="form-control input-md"></div>'
-        //     );
-        // });
-
         $(".add-more").click(function(){
             var html = $(".copy").html();
             $(".after-add-more").after(html);
@@ -164,10 +168,6 @@
         $("body").on("click",".remove",function(){
             $(this).parents(".control-group").remove();
         });
-        // $("body").on("click", ".delete", function(e) {
-        //     $(".next-referral").last().remove();
-        // });
-
 
         $start.on('click', function() {
             // var my_time = Math.floor(Date.now() / 1000)
@@ -177,7 +177,7 @@
             started = true
             var start_time = Date.now()
             var rates = $('input[name="my_rate[]"]').map(function(){
-                return parseInt(this.value);
+                    return parseInt(this.value);
             }).get();
 
             console.log("rates")
@@ -186,9 +186,6 @@
             const arrMax = arr => Math.max(...arr);
             const arrSum = arr => arr.reduce((a,b) => a + b, 0)
             const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-            // console.log("Laagste: " + arrMin(rates))
-            // console.log("Hoogste: " + arrMax(rates))
-            // console.log("Totaal: " + arrSum(rates))
             var total_rate = arrSum(rates)
             var avg_rate = arrAvg(rates)
             var lowest_rate = arrMin(rates)
