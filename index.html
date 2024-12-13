@@ -1,270 +1,350 @@
+<!doctype html>
 <html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Money Burn Monitor - Real-Time Meeting Cost Calculator</title>
+        <meta
+            name="description"
+            content="Calculate the real-time cost of your meetings with Money Burn Monitor. Add participants, set hourly rates, and see the money burn as time ticks by. Perfect for tracking meeting efficiency!"
+        />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <meta
+            name="keywords"
+            content="Money Burn Monitor, meeting cost calculator, real-time meeting cost, calculate meeting costs, meeting efficiency, hourly rate tracker, team meeting cost"
+        />
+        <meta name="author" content="Theo van der Sluijs" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            property="og:title"
+            content="Money Burn Monitor - Real-Time Meeting Cost Calculator"
+        />
+        <meta
+            property="og:description"
+            content="Track meeting costs in real-time with Money Burn Monitor. Add participants, set hourly rates, and discover the true cost of every second spent in a meeting."
+        />
+        <meta property="og:image" content="assets/money-burn-monitor.jpg" />
+        <meta
+            property="og:url"
+            content="https://github.com/tvdsluijs/money-burn-monitor"
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Money Burn Monitor - Real-Time Meeting Cost Calculator"
+        />
+        <meta
+            name="twitter:description"
+            content="Discover the true cost of your meetings with Money Burn Monitor. Real-time tracking of meeting costs based on participants' hourly rates."
+        />
+        <meta name="twitter:image" content="assets/money-burn-monitor.16.png" />
+        <!-- Tailwind CSS -->
+        <link rel="stylesheet" href="assets/css/tailwind.min.css" />
+        <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
+        <style>
+            .scrollbar-thumb {
+                background-color: #cbd5e0;
+                border-radius: 0.375rem;
+            }
+            .scrollbar-thumb:hover {
+                background-color: #a0aec0;
+            }
+        </style>
+    </head>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/bootstrap.min.css" >
-    <style>
-        #svg_top {
-            fill: #FFF;
-        }
-        .fa-w-14{
-            width: 25px;
-            height: 25px;
-            fill: #FFF;
-            color: coral;
-        }
-        .fa-w-16{
-            width: 20px;
-            height: 20px;
-            fill: #FFF;
-            color: #FFF;
-        }
-    </style>
-</head>
-<body>
+    <body class="bg-gray-100 min-h-screen flex flex-col">
+        <div class="absolute top-4 right-4 flex space-x-4">
+            <!-- Settings Icon -->
+            <span
+                id="settings-icon"
+                class="cursor-pointer text-gray-400 hover:text-gray-600"
+            >
+                <i class="fa-solid fa-gear text-gray-600 text-2xl"></i>
+            </span>
 
-<div class="container-fluid">
-    <div class="row">
-    <p><br></p>
-</div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header flex">
-                    Rates
-                    <a class="btn float-right" data-toggle="collapse"
-                       href="#rates" role="button"
-                       aria-expanded="true" aria-controls="rates">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-down" class="svg-inline--fa fa-arrow-circle-down fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-143.6-28.9L288 302.6V120c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v182.6l-72.4-75.5c-9.3-9.7-24.8-9.9-34.3-.4l-10.9 11c-9.4 9.4-9.4 24.6 0 33.9L239 404.3c9.4 9.4 24.6 9.4 33.9 0l132.7-132.7c9.4-9.4 9.4-24.6 0-33.9l-10.9-11c-9.5-9.5-25-9.3-34.3.4z"></path></svg>
-                    </a>
-                </div>
-                <div class="card-body collapse show" id="rates">
-                    <h4 class="card-title">Fill in peoples rates</h4>
-                    <p class="card-text">
-                    <div class="row after-add-more">
-                        <div class="col-3"><label class="control-label">Rate €.</label></div>
-                        <div class="col-4">
-                            <input  name="my_rate[]" type="text" placeholder="Rate"
-                                    class="form-control input-md" value="120"></div>
-                        <div class="col-5">
-                            <button class="btn btn-success btn-lg btn-block add-more" type="button">
-                                <i class="glyphicon glyphicon-plus"></i> Add</button>
-                        </div>
-                    </div>
-                    <div class="copy hide">
-                        <div class="row control-group">
-                            <div class="col-3"><label class="control-label">Rate €.</label></div>
-                            <div class="col-4">
-                                <input id="my_rate" name="my_rate[]" type="text" placeholder="Rate"
-                                       class="form-control input-md" value="120"></div>
-                            <div class="col-5">
-                                <button class="btn btn-info btn-lg btn-block remove" type="button">
-                                    <i class="glyphicon glyphicon-remove"></i> Delete</button>
+            <!-- Info Icon -->
+            <span
+                id="info-icon"
+                class="cursor-pointer text-gray-400 hover:text-gray-600"
+            >
+                <i class="fa-solid fa-circle-info text-gray-600 text-2xl"></i>
+            </span>
+        </div>
+
+        <!-- Settings Overlay -->
+        <div
+            id="settings-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50"
+        >
+            <div class="bg-white w-96 p-6 rounded shadow-lg">
+                <h2 class="text-xl font-bold mb-4">Settings</h2>
+                <label for="currency" class="block text-sm font-medium"
+                    >Select Currency:</label
+                >
+                <select
+                    id="currency"
+                    class="border p-2 rounded w-full mt-2"
+                    onchange="updateCurrencySymbol()"
+                >
+                    <option value="€">Euro (€)</option>
+                    <option value="$">Dollar ($)</option>
+                    <option value="£">Pound (£)</option>
+                    <option value="¥">Yen (¥)</option>
+                    <option value="₹">Indian Rupee (₹)</option>
+                    <option value="₡">Galactic Credits (₡)</option>
+                    <option value="Ξ">Federation Credits (Ξ)</option>
+                    <option value="Ƶ">Woolongs (Ƶ)</option>
+                </select>
+                <button
+                    class="mt-4 w-full bg-red-500 text-white p-2 rounded"
+                    id="close-settings"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <!-- Info Overlay -->
+        <div
+            id="info-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 sm:p-8 hidden z-50 overflow-y-scroll"
+        >
+            <div
+                class="bg-white w-full max-w-lg sm:max-w-xl lg:max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg"
+            >
+                <h2 class="text-xl font-bold mb-2">
+                    About the Money Burn Monitor
+                </h2>
+                <p>
+                    The <strong>Money Burn Monitor</strong> is a lighthearted
+                    yet eye-opening tool designed to calculate the real cost of
+                    meetings based on participants' hourly rates.
+                </p>
+                <h3 class="text-lg font-semibold mt-4">
+                    Why I Built This Tool
+                </h3>
+                <p>
+                    I’ve been in way too many disorganized, drawn-out sessions
+                    where people talked for hours, yet nothing concrete came out
+                    of it. Frustrated by meeting after meeting, I decided to
+                    write some code instead of participating. And that’s how
+                    this script was born. The first version was created on
+                    <strong>June 16, 2021</strong>.
+                </p>
+
+                <h3 class="text-lg font-semibold mt-4">
+                    Licensing and Credits
+                </h3>
+                <p>
+                    This tool is <strong>free to use</strong>, but coffee is
+                    always appreciated
+                    <a
+                        href="https://www.buymeacoffee.com/itheo"
+                        target="_blank"
+                        style="color: #8b4513"
+                    >
+                        <i class="fas fa-mug-hot text-brown-500"></i> </a
+                    >.
+                </p>
+                <br />
+                <p>
+                    <i class="fas fa-code text-green-500"></i> Developed by:
+                    <a
+                        href="https://theovandersluijs.eu"
+                        target="_blank"
+                        class="text-blue-600 hover:underline"
+                        >Theo van der Sluijs</a
+                    >
+                    <br />
+                    <i class="fab fa-github text-gray-800"></i> GitHub:
+                    <a
+                        href="https://github.com/tvdsluijs"
+                        target="_blank"
+                        class="text-blue-600 hover:underline"
+                        >tvdsluijs</a
+                    >
+                    <br />
+                    <i class="fas fa-envelope text-gray-500"></i> Email:
+                    <a
+                        href="mailto:theo@vandersluijs.nl"
+                        class="text-blue-600 hover:underline"
+                        >theo@vandersluijs.nl</a
+                    >
+                </p>
+                <p>
+                    Built with <i class="fas fa-heart text-red-500"></i>, some
+                    nerd jokes, and a sprinkle of sarcasm.<br />
+                    Can you find the hidden jokes? Let me know!
+                </p>
+                <button
+                    class="mt-4 w-full bg-red-500 text-white p-2 rounded"
+                    id="close-info"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <header
+            class="container mx-auto text-center bg-white p-6 rounded shadow-md mb-6"
+        >
+            <h1 class="text-4xl font-bold mb-4">Money Burn Monitor</h1>
+            <img
+                src="assets/tenor.gif"
+                alt="Money Burn Monitor Animation"
+                class="mx-auto w-40 h-40 rounded"
+            />
+            <p
+                id="tagline"
+                class="text-lg font-semibold text-gray-600 mt-4"
+            ></p>
+        </header>
+        <!-- Main Content -->
+        <div
+            class="container mx-auto p-4 bg-white rounded-t shadow-md flex-grow"
+        >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Left Column: Input Form -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">
+                        Meeting participants
+                        <div class="relative inline-block ml-2">
+                            <span
+                                class="cursor-pointer text-gray-400 hover:text-gray-600 hover:bg-gray-300"
+                                id="participants-help-icon"
+                            >
+                                <i class="fa-solid fa-circle-question"></i>
+                            </span>
+                            <!-- Participants Help Overlay -->
+
+                            <div
+                                id="participants-help-overlay"
+                                class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden z-50"
+                            >
+                                <div
+                                    class="bg-white w-64 rounded shadow-lg p-4 relative"
+                                >
+                                    <p class="text-sm">
+                                        Add the name and hourly rate of each
+                                        participant. You can add or remove
+                                        participants as needed. The cost of the
+                                        meeting is calculated in real-time based
+                                        on their rates. If you want to change
+                                        the currency, please open the settings
+                                        in the top-right corner.
+
+                                        <button
+                                            class="mt-4 w-full bg-red-500 text-white p-2 rounded"
+                                            id="participants-help-close"
+                                        >
+                                            Close
+                                        </button>
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                    </h2>
+                    <div id="person-form" class="space-y-4">
+                        <!-- Template for Person -->
+                        <div class="flex items-center space-x-4 person-row">
+                            <input
+                                type="text"
+                                placeholder="Name"
+                                class="w-full max-w-xs sm:max-w-md border p-1 sm:p-2 rounded"
+                            />
+                            <div
+                                class="flex items-center justify-between sm:justify-start sm:space-x-4 space-x-2"
+                            >
+                                <input
+                                    type="number"
+                                    placeholder="Rate"
+                                    class="w-full sm:w-24 border p-1 sm:p-2 rounded"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    required
+                                />
+                                <span
+                                    class="currency-symbol text-sm sm:text-base whitespace-nowrap"
+                                    >€</span
+                                >
+                            </div>
+                            <button
+                                class="w-20 bg-green-500 text-white px-4 py-2 rounded add-row"
+                            >
+                                Add
+                            </button>
+                            <button
+                                class="w-20 bg-red-500 text-white px-4 py-2 rounded delete-row hidden"
+                            >
+                                Delete
+                            </button>
+                        </div>
                     </div>
+                </div>
 
-                    </p>
+                <!-- Right Column: Timer and Cost -->
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold mb-4">Meeting Cost</h2>
+                    <div class="text-xl mt-4">
+                        <p id="timer" class="font-mono text-3xl">00:00:00</p>
+                        <p id="cost" class="text-6xl text-red-500 mt-2">
+                            <span class="currency-symbol">€</span>
+                            <span id="cost-value">0.00</span>
+                        </p>
+                    </div>
+                    <div class="mt-6 space-x-4">
+                        <button
+                            id="start"
+                            class="bg-green-500 text-white px-6 py-3 rounded"
+                        >
+                            Start
+                        </button>
+                        <button
+                            id="stop"
+                            class="bg-red-500 text-white px-6 py-3 rounded"
+                        >
+                            Stop
+                        </button>
+                        <button
+                            id="reset"
+                            class="bg-gray-500 text-white px-6 py-3 rounded"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                    <div id="cost-breakdown" class="mt-6"></div>
                 </div>
             </div>
-
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-6 text-center">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                    <h1>Money Burn Monitor</h1>
-                    <p class="lead">Where every second counts!</p>
-                </div>
-            </div>
-            <p>
-                <img src="assets/tenor.gif" height="150" width="150"/>
+
+        <!-- Footer -->
+        <footer
+            class="container mx-auto text-center bg-white p-6 rounded shadow-md mb-6"
+        >
+            <p class="text-sm">
+                Build by
+                <a href="https://theovandersluijs.eu" target="_blank"
+                    >theovandersluijs</a
+                >. Like this script? Please feel free to buy me a
+                <a
+                    href="https://www.buymeacoffee.com/itheo"
+                    target="_blank"
+                    style="color: #8b4513"
+                >
+                    <i class="fa-solid fa-mug-hot"></i>
+                </a>
+                More info about this script, just visit my
+                <a
+                    href="https://github.com/tvdsluijs/money-burn-monitor"
+                    target="_blank"
+                    class="text-blue-600 hover:underline"
+                    ><i class="fa-brands fa-github"></i></a
+                >.
             </p>
-            <div class="alert alert-primary">
-                <div id="stopwatch" >00:00:00</div>
-            </div>
-            <div id="money" class="alert alert-dismissible alert-danger display-3"></div>
-            <div class="row">
-                <div class="col">
-                </div>
-                <div class="co-sm text-center">
-                    <button id="start" class="btn btn-success">Start</button>
-                    <button id="stop" class="btn btn-danger">Stop</button>
-                </div>
-                <div class="col">
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer class="page-footer font-small blue pt-4">
-
-                <div class="footer-copyright text-center py-3">
-                    <p>Like this script? <a href="https://www.buymeacoffee.com/itheo" target="_blank">Buy me a
-                            <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="coffee-togo" class="svg-inline--fa fa-coffee-togo fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M48 160h352l-8 96H56zm330.67 256H69.33l-11-131.76 16.56 198.42A32 32 0 0 0 106.78 512h234.44a32 32 0 0 0 31.89-29.34l16.54-198.42z" opacity="0.4"></path><path class="fa-primary" fill="currentColor" d="M69.33 416h309.34L392 256H56zM432 64h-16l-23.16-46.31A32 32 0 0 0 364.22 0H83.78a32 32 0 0 0-28.62 17.69L32 64H16A16 16 0 0 0 0 80v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16z"></path></g></svg></a>.</p> <p> More info about this script, just visit <a href="https://github.com/tvdsluijs/money-burn-monitor" target="_blank">my github</a>.
-                </p></div>
-
-            </footer>
-            <!-- Footer -->
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-header">
-                    Rate Info
-                    <a class="btn float-right" data-toggle="collapse"
-                       href="#rate-info" role="button"
-                       aria-expanded="true" aria-controls="rate-info">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-down" class="svg-inline--fa fa-arrow-circle-down fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-143.6-28.9L288 302.6V120c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v182.6l-72.4-75.5c-9.3-9.7-24.8-9.9-34.3-.4l-10.9 11c-9.4 9.4-9.4 24.6 0 33.9L239 404.3c9.4 9.4 24.6 9.4 33.9 0l132.7-132.7c9.4-9.4 9.4-24.6 0-33.9l-10.9-11c-9.5-9.5-25-9.3-34.3.4z"></path></svg>
-                    </a>
-                </div>
-                <div class="card-body collapse show" id="rate-info">
-                    <p class="card-text">
-                    <table class="table table-hover col-12">
-                        <thead>
-                        <tr>
-                            <th scope="col">Rate</th>
-                            <th scope="col">Costs</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="table-secondary">
-                            <td>Average </td>
-                            <td><div id="average"></div></td>
-                        </tr>
-                        <tr class="table-secondary">
-                            <td>Lowest </td>
-                            <td><div id="lowest"></div></td>
-                        </tr>
-                        <tr class="table-secondary">
-                            <td>Highest </td>
-                            <td><div id="highest"></div></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </p>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-</div>
-
-</body>
-<script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script>
-
-    $(document).ready(function() {
-        var $start = $('#start');
-        var $stop = $('#stop');
-        var timer;
-        var started = false;
-        var hour_rate = 120;
-        $('#money').html("€ 0,00")
-
-        $(".add-more").click(function(){
-            var html = $(".copy").html();
-            $(".after-add-more").after(html);
-        });
-
-
-        $("body").on("click",".remove",function(){
-            $(this).parents(".control-group").remove();
-        });
-
-        $start.on('click', function() {
-            // var my_time = Math.floor(Date.now() / 1000)
-            if(started){
-                return;
-            }
-            started = true
-            var start_time = Date.now()
-            var rates = $('input[name="my_rate[]"]').map(function(){
-                    return parseInt(this.value);
-            }).get();
-
-            console.log("rates")
-
-            const arrMin = arr => Math.min(...arr);
-            const arrMax = arr => Math.max(...arr);
-            const arrSum = arr => arr.reduce((a,b) => a + b, 0)
-            const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-            var total_rate = arrSum(rates)
-            var avg_rate = arrAvg(rates)
-            var lowest_rate = arrMin(rates)
-            var highest_rate = arrMax(rates)
-            // console.log("gemiddelde: " + arrAvg(rates))
-            $('#stopwatch').html('00:00:00')
-
-            $('#average').html("€ " + avg_rate.toFixed(2))
-            $('#lowest').html("€ " + lowest_rate.toFixed(2))
-            $('#highest').html("€ " + highest_rate.toFixed(2))
-
-            $('#money').html("€ 0,00")
-            timer = setInterval( function() { Burner(start_time, total_rate); }, 1);
-            // timer = setInterval('Burner('+maxWidth+')', 1000);
-
-        });
-
-        $stop.on('click', function() {
-            clearInterval(timer);
-            started = false
-        });
-
-    });
-
-    function defaultFormatMilliseconds(x) {
-        var millis, seconds, minutes, hours;
-        millis = Math.floor((x % 1000) / 100);
-        x /= 1000;
-        seconds = Math.floor(x % 60);
-        x /= 60;
-        minutes = Math.floor(x % 60);
-        x /= 60;
-        hours = Math.floor(x % 24);
-        // x /= 24;
-        // days = Math.floor(x);
-        return [pad2(hours), pad2(minutes), pad2(seconds)].join(':') + "." + millis;
-    }
-
-    function pad2(number) {
-        number = (number < 10 ? '0' : '') + number;
-        number = number.substring(0,2);
-        return number;
-    }
-
-    function Burner(start_time, hour_rate) {
-        // var new_time = Math.floor(Date.now() / 1000)
-        var new_time = Date.now()
-        var diff_time = (new_time - start_time)
-
-        console.log("new time :" + new_time)
-        console.log("start time :" + start_time)
-        console.log("diff time :" + hour_rate)
-        console.log("hour rate :" + hour_rate)
-
-        $('#stopwatch').html(defaultFormatMilliseconds(diff_time));
-
-        var money_per_minute = (hour_rate / 60);
-        console.log("money per minute :" + money_per_minute)
-        var money_per_seconds = (money_per_minute / 60);
-        console.log("money per second :" + money_per_seconds)
-        var money_per_m_seconds = (money_per_seconds / 1000);
-        console.log("money per m_second :" + money_per_m_seconds)
-        var money = (money_per_m_seconds * diff_time);
-        // let round2dec = num => Math.round(num * 100) / 100;
-
-        // console.log(round2dec(money))
-
-        $('#money').html("€ " + money.toFixed(2));
-    }
-</script>
+        </footer>
+        <script src="assets/js/meme.js"></script>
+        <script src="assets/js/addrow.js"></script>
+        <script src="assets/js/overlay.js"></script>
+        <script src="assets/js/calculate.js"></script>
+    </body>
 </html>
