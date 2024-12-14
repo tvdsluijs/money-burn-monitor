@@ -1,7 +1,3 @@
-Here’s an updated and polished version of your README.md file:
-
----
-
 # Money Burn Monitor
 
 [![Contributors][contributors-shield]][contributors-url]
