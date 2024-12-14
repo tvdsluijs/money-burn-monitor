@@ -123,6 +123,4 @@ This project is licensed under the MIT License—see the [LICENSE](https://githu
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/tvandersluijs
 
----
-
-Let me know if there’s anything else you’d like to adjust! 🚀
+🚀
